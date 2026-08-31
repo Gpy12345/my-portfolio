@@ -28,7 +28,8 @@
     <link rel="stylesheet" href="matcher.css" />
   </head>
   <body>
-    <video class="site-background-video" autoplay loop muted playsinline preload="metadata" aria-hidden="true"><source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4" type="video/mp4" /></video>
+    <div class="site-background-poster" aria-hidden="true"></div>
+    <video class="site-background-video" autoplay loop muted playsinline preload="metadata" poster="site-background-poster.jpg" aria-hidden="true"><source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4" type="video/mp4" /></video>
     <header class="site-header liquid-glass">
       <a class="mark" href="#about" aria-label="返回顶部"><img src="avatar.jpg" alt="郭璞扬" /><span>PORTFOLIO</span></a>
       <nav aria-label="主导航">
@@ -80,7 +81,7 @@
             </div>
             <p class="matcher-status" data-matcher-status role="status" aria-live="polite"></p>
             <section class="matcher-result" data-matcher-result hidden aria-live="polite">
-              <div class="matcher-score-report" aria-label="岗位匹配评分报告">
+              <div class="matcher-score-report" data-matcher-score-report aria-label="岗位匹配评分报告">
                 <div class="matcher-overall"><span>总体契合度</span><strong data-matcher-overall>--</strong><small>/ 100</small></div>
                 <div class="matcher-dimensions">
                   <div class="matcher-dimension"><div><span>技能匹配度</span><b data-matcher-score="skills">--</b></div><i><em data-matcher-bar="skills"></em></i></div>
