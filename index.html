@@ -80,6 +80,14 @@
             </div>
             <p class="matcher-status" data-matcher-status role="status" aria-live="polite"></p>
             <section class="matcher-result" data-matcher-result hidden aria-live="polite">
+              <div class="matcher-score-report" aria-label="岗位匹配评分报告">
+                <div class="matcher-overall"><span>总体契合度</span><strong data-matcher-overall>--</strong><small>/ 100</small></div>
+                <div class="matcher-dimensions">
+                  <div class="matcher-dimension"><div><span>技能匹配度</span><b data-matcher-score="skills">--</b></div><i><em data-matcher-bar="skills"></em></i></div>
+                  <div class="matcher-dimension"><div><span>经验匹配度</span><b data-matcher-score="experience">--</b></div><i><em data-matcher-bar="experience"></em></i></div>
+                  <div class="matcher-dimension"><div><span>行业匹配度</span><b data-matcher-score="industry">--</b></div><i><em data-matcher-bar="industry"></em></i></div>
+                </div>
+              </div>
               <p class="matcher-result-label">匹配解读</p>
               <p class="matcher-summary" data-matcher-summary></p>
               <p class="matcher-result-label">关键匹配点</p>

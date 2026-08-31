@@ -6,9 +6,12 @@
   const result = document.querySelector('[data-matcher-result]');
   const summary = document.querySelector('[data-matcher-summary]');
   const points = document.querySelector('[data-matcher-points]');
+  const overall = document.querySelector('[data-matcher-overall]');
+  const scoreValues = Object.fromEntries(['skills', 'experience', 'industry'].map(key => [key, document.querySelector(`[data-matcher-score="${key}"]`)]));
+  const scoreBars = Object.fromEntries(['skills', 'experience', 'industry'].map(key => [key, document.querySelector(`[data-matcher-bar="${key}"]`)]));
   const maxLength = 5000;
 
-  if (!input || !submit || !counter || !status || !result || !summary || !points) return;
+  if (!input || !submit || !counter || !status || !result || !summary || !points || !overall) return;
 
   const setStatus = (message, type = '') => {
     status.textContent = message;
@@ -19,9 +22,21 @@
     counter.textContent = `${input.value.length} / ${maxLength}`;
   };
 
+  const scoreValue = value => Math.max(0, Math.min(100, Math.round(Number(value) || 0)));
+
   const showResult = data => {
-    summary.textContent = data.summary;
-    points.replaceChildren(...data.matches.map(point => {
+    const scores = data && typeof data.scores === 'object' ? data.scores : {};
+    const dimensionValues = Object.fromEntries(['skills', 'experience', 'industry'].map(key => [key, scoreValue(scores[key])]));
+    const total = scoreValue(data.overall ?? Math.round(Object.values(dimensionValues).reduce((sum, value) => sum + value, 0) / 3));
+    overall.textContent = total;
+    Object.entries(dimensionValues).forEach(([key, value]) => {
+      scoreValues[key].textContent = value;
+      scoreBars[key].style.width = `${value}%`;
+      scoreBars[key].parentElement.setAttribute('aria-valuenow', String(value));
+    });
+    summary.textContent = typeof data.summary === 'string' && data.summary.trim() ? data.summary.trim() : '暂未生成契合度说明。';
+    const keyPoints = Array.isArray(data.key_points) ? data.key_points.filter(point => typeof point === 'string' && point.trim()).slice(0, 5) : [];
+    points.replaceChildren(...(keyPoints.length ? keyPoints : ['暂未生成关键匹配点。']).map(point => {
       const item = document.createElement('li');
       item.textContent = point;
       return item;

@@ -54,11 +54,18 @@ function parseModelResult(content) {
   const cleaned = content.replace(/^```json\s*/i, '').replace(/```$/i, '').trim();
   const parsed = JSON.parse(cleaned);
   const summary = typeof parsed.summary === 'string' ? parsed.summary.trim() : '';
-  const matches = Array.isArray(parsed.matches)
-    ? parsed.matches.filter(item => typeof item === 'string' && item.trim()).map(item => item.trim()).slice(0, 5)
+  const score = value => Number.isFinite(value) && value >= 0 && value <= 100 ? Math.round(value) : null;
+  const scores = {
+    skills: score(parsed.scores?.skills),
+    experience: score(parsed.scores?.experience),
+    industry: score(parsed.scores?.industry)
+  };
+  const keyPoints = Array.isArray(parsed.key_points)
+    ? parsed.key_points.filter(item => typeof item === 'string' && item.trim()).map(item => item.trim()).slice(0, 5)
     : [];
-  if (!summary || matches.length < 3) throw new Error('Invalid model format');
-  return { summary, matches };
+  if (!summary || Object.values(scores).some(value => value === null) || keyPoints.length < 3) throw new Error('Invalid model format');
+  const overall = Math.round((scores.skills + scores.experience + scores.industry) / 3);
+  return { scores, overall, summary, key_points: keyPoints };
 }
 
 module.exports = async function match(request, response) {
@@ -93,7 +100,7 @@ module.exports = async function match(request, response) {
           },
           {
             role: 'user',
-            content: `请分析以下候选人与岗位 JD 的契合度。\n\n候选人完整背景：\n${candidateBackground}\n\n岗位 JD：\n${jd}\n\n请输出 JSON，格式必须严格为：{"summary":"一段 70-130 字的中文契合度说明，客观说明优势与需要补齐之处","matches":["关键匹配点 1","关键匹配点 2","关键匹配点 3"]}。matches 输出 3 到 5 条，每条简洁、具体，并引用真实经历或技能。`
+            content: `请分析以下候选人与岗位 JD 的契合度。\n\n候选人完整背景：\n${candidateBackground}\n\n岗位 JD：\n${jd}\n\n请输出 JSON，格式必须严格为：{"scores":{"skills":85,"experience":72,"industry":90},"summary":"一段 70-130 字的中文契合度说明，客观解释评分依据、优势与需要补齐之处","key_points":["关键匹配点 1","关键匹配点 2","关键匹配点 3"]}。scores 的三个维度均为 0 到 100 的整数：skills 是岗位所需技能与候选人现有技能的匹配程度；experience 是工作内容、业务方法与项目经历的匹配程度；industry 是岗位所属行业、业务场景与候选人行业经验的匹配程度。key_points 输出 3 到 5 条，每条简洁、具体，并引用真实经历或技能。不要输出 overall 字段，系统会将三个维度的平均分作为总体契合度。`
           }
         ]
       }),
