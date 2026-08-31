@@ -1,0 +1,29 @@
+#skills { min-height: 100dvh; padding-top: 118px; padding-bottom: 118px; }
+
+.skills-heading,
+#skills > .skills-heading { width: 100%; max-width: none; margin: 0; text-align: center; }
+.skills-heading p { width: 100%; max-width: none; margin: 0 auto; color: #5e8a76; font-size: 11px; font-weight: 800; letter-spacing: .16em; text-align: center; }
+.skills-heading h2 { margin: 13px 0 0; color: #293a31; font-size: clamp(38px, 4.8vw, 60px); letter-spacing: -.065em; line-height: 1.08; }
+.skills-heading > span { display: block; margin-top: 15px; color: #718078; font-size: 14px; }
+
+.skills-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; max-width: 1040px; margin: 46px auto 0; }
+#skills .skill-category-card { min-height: 242px; padding: 25px; border: 1px solid rgba(54, 85, 70, .14); border-radius: 18px; background: rgba(224, 242, 231, .72); box-shadow: 0 15px 35px rgba(43, 70, 56, .07); transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
+.skill-category-card:hover { border-color: rgba(65, 143, 105, .46); box-shadow: 0 0 16px rgba(65, 143, 105, .18), 0 18px 38px rgba(43, 70, 56, .08); transform: translateY(-3px); }
+.skill-category-icon { display: block; font-size: 23px; line-height: 1; }
+.skill-category-card h3 { margin: 15px 0 0; color: #32473b; font-size: 17px; letter-spacing: -.035em; }
+.skill-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 21px; }
+.skill-pills span { padding: 6px 9px; border: 1px solid rgba(70, 108, 91, .12); border-radius: 999px; background: rgba(238, 247, 241, .72); color: #4a6d5d; font-size: 11px; font-weight: 700; line-height: 1.35; }
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-category-card { transition: none; }
+}
+
+@media (max-width: 760px) {
+  #skills { padding-top: 86px; }
+  .skills-heading,
+  #skills > .skills-heading { text-align: center; }
+  .skills-heading h2 { font-size: 39px; }
+  .skills-heading > span { font-size: 13px; }
+  .skills-cards { grid-template-columns: 1fr; gap: 13px; margin-top: 37px; }
+  #skills .skill-category-card { min-height: 0; padding: 22px; }
+}

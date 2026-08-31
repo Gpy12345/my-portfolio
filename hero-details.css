@@ -1,0 +1,51 @@
+/* Hero-only finishing pass: warm typography and generous, reference-inspired actions. */
+#about .role {
+  color: #ad8761;
+  font-weight: 700;
+}
+
+#about .hero-actions {
+  gap: 16px;
+}
+
+#about .hero-actions .button {
+  min-height: 58px;
+  padding: 14px 29px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: .01em;
+}
+
+#about .hero-actions .button-dark {
+  background: #292925;
+  border-color: #292925;
+  color: #fff;
+}
+
+#about .hero-actions .button-mint {
+  background: rgba(255, 255, 255, .36);
+  border: 1.5px solid rgba(74, 73, 65, .75);
+  color: #30302b;
+}
+
+#about .education-badge {
+  text-align: center;
+}
+
+#about .education-badge span {
+  color: #b38a61;
+}
+
+#about .education-badge small {
+  color: rgba(72, 75, 68, .52);
+  font-weight: 500;
+}
+
+@media (max-width: 760px) {
+  #about .hero-actions .button {
+    min-height: 53px;
+    padding: 12px 22px;
+    font-size: 15px;
+  }
+}

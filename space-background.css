@@ -1,0 +1,42 @@
+/* Reference-inspired fixed background: a calm monochrome orbit, adapted for this portfolio. */
+html {
+  background: #f3f3f1;
+}
+
+body {
+  background-image:
+    linear-gradient(135deg, rgba(247, 247, 247, .38), rgba(240, 241, 240, .54)),
+    url("orbit-background.png");
+  background-position: center, center 40%;
+  background-size: cover, min(1500px, 112vw) auto;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
+}
+
+#about.hero {
+  background: rgba(247, 247, 247, .62);
+}
+
+#education,
+#experience,
+#explore,
+#skills {
+  background: rgba(248, 248, 247, .84);
+  backdrop-filter: blur(3px);
+}
+
+@media (max-width: 760px) {
+  body { background-size: cover, 150vw auto; }
+  #education,
+  #experience,
+  #explore,
+  #skills { backdrop-filter: none; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  #about.hero,
+  #education,
+  #experience,
+  #explore,
+  #skills { background: #f6f6f4; backdrop-filter: none; }
+}

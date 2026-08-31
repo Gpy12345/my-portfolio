@@ -1,0 +1,115 @@
+/* Compact, Apple-inspired contact controls reserved for the header. */
+@media (min-width: 761px) {
+  .site-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    justify-content: initial;
+  }
+
+  .site-header .mark { justify-self: start; }
+  .site-header .header-right { justify-self: end; }
+}
+
+.site-header .mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #262722;
+  color: #11110f;
+  font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.site-header .mark img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 34%;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.header-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #242521;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header-icon:hover,
+.header-icon:focus-visible { background: rgba(36, 37, 33, .07); outline: none; }
+
+.header-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.65;
+}
+
+.header-icon:first-child svg circle { fill: currentColor; stroke: none; }
+
+.header-tooltip {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 20;
+  width: max-content;
+  max-width: 230px;
+  padding: 8px 10px;
+  border: 1px solid rgba(21, 22, 19, .1);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, .96);
+  box-shadow: 0 10px 22px rgba(26, 30, 23, .14);
+  color: #282924;
+  font: 600 11px/1.25 "PingFang SC", "Microsoft YaHei", sans-serif;
+  letter-spacing: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity .16s ease, transform .16s ease;
+}
+
+.tooltip-trigger:hover .header-tooltip,
+.tooltip-trigger:focus-visible .header-tooltip,
+.tooltip-trigger.copied .header-tooltip { opacity: 1; transform: translateY(0); }
+
+.header-right .header-contact {
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: #2b2d2b;
+  color: #fff;
+  box-shadow: 0 5px 14px rgba(35, 38, 36, .16);
+  font-size: 11px;
+}
+
+.header-right .header-contact:hover { background: #151716; }
+
+@media (max-width: 760px) {
+  .site-header .mark span { display: none; }
+  .header-icon { display: none; }
+}
