@@ -246,3 +246,44 @@ section.section-shell.reveal.visible > :nth-child(3) { transition-delay: .28s; }
   .site-header.liquid-glass nav { background: rgba(0, 0, 0, .78); border-radius: 0 0 14px 14px; }
   .site-header .header-right { display: none; }
 }
+
+/* Mobile: the avatar and navigation belong to one compact, scrollable row. */
+@media (max-width: 760px) {
+  .site-header.liquid-glass {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 62px;
+    min-height: 62px;
+    padding: 0 12px;
+    overflow: hidden;
+  }
+
+  .site-header.liquid-glass .mark { flex: 0 0 auto; }
+  .site-header.liquid-glass .mark img { width: 34px; height: 34px; }
+
+  .site-header.liquid-glass nav {
+    position: static;
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 4px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 0 0 2px;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .site-header.liquid-glass nav::-webkit-scrollbar { display: none; }
+  .site-header.liquid-glass .nav-link {
+    flex: 0 0 auto;
+    padding: 8px 10px;
+    font-size: 12px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+}
