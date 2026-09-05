@@ -137,7 +137,6 @@
 .creator-carousel-dots { display: flex; gap: 7px; }
 .creator-carousel-dots button { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: #c7d4cd; cursor: pointer; transition: transform .2s ease, background .2s ease; }
 .creator-carousel-dots button.is-active { background: #34765a; transform: scale(1.25); }
-.creator-carousel-dots button:nth-child(n + 4) { display: none; }
 .creator-carousel-summary { margin: 23px 2px 0; color: #627269; font-size: 13px; line-height: 1.9; }
 
 .image-lightbox { position: fixed; inset: 0; z-index: 80; display: none; place-items: center; padding: 34px; }
